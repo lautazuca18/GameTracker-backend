@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const juegoSchema = new mongoose.Schema({
-  titulo: { type: String, required: true },
-  genero: { String },
-  horasJugadas: { Number },
-  completado: { Boolean },
-  puntuacion: { Number },
-  portada: { String }
+  titulo: { type: String },
+  genero: { type: String },
+  horasJugadas: { type: Number },
+  completado: { type: Boolean },
+  puntuacion: { type: Number },
+  portada: { type: String }
 });
 
 module.exports = mongoose.model('Juego', juegoSchema);

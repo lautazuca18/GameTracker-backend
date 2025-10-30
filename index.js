@@ -24,6 +24,57 @@ app.get('/juegos', async (req, res) => {
     res.send(juegos);
 });
 
+app.post('/juegos', async (req, res) => {
+    const titulo = req.body.titulo;
+    const genero = req.body.genero;
+    const horasJugadas = req.body.horasJugadas;
+    const completado = req.body.completado;
+    const puntuacion = req.body.puntuacion;
+
+    const juego = {
+        titulo,
+        genero,
+        horasJugadas,
+        completado,
+        puntuacion
+    }
+
+    const nuevoJuego = new Juego(juego);
+
+    const juegoGuardado = await nuevoJuego.save();
+
+    res.send(juegoGuardado);
+});
+
+app.put('/juegos/:id', async (req, res) => {
+    const id = req.params.id;
+    const titulo = req.body.titulo;
+    const genero = req.body.genero;
+    const horasJugadas = req.body.horasJugadas;
+    const completado = req.body.completado;
+    const puntuacion = req.body.puntuacion;
+
+    const juego = {
+        titulo,
+        genero,
+        horasJugadas,
+        completado,
+        puntuacion
+    }
+
+    const juegoActualizado = await Juego.findByIdAndUpdate(id, juego, { new: true });
+
+    res.send(juegoActualizado);
+});
+
+app.delete('/juegos/:id', async (req, res) => {
+    const id = req.params.id;
+
+    const juegoBorrado = await Juego.findByIdAndDelete(id);
+
+    res.send(juegoBorrado);
+});
+
 app.listen(3000, () => {
     console.log("Servidor ejecutandose en http://localhost:3000");
 })
