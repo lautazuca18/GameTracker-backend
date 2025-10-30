@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const juegoSchema = new mongoose.Schema({
   titulo: { type: String },
   genero: { type: String },
-  horasJugadas: { type: Number },
+  plataforma: { type: String },
+  añoLanzamiento: { type: Number },
+  desarrollador: { type: String },
+  imagenPortada: { type: String },
+  descripcion: { type: String },
   completado: { type: Boolean },
-  puntuacion: { type: Number },
-  portada: { type: String }
+  fechaCreacion: { type: Date }
 });
 
 module.exports = mongoose.model('Juego', juegoSchema);
-
