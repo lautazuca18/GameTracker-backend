@@ -8,8 +8,7 @@ const juegoSchema = new mongoose.Schema({
   desarrollador: { type: String },
   imagenPortada: { type: String },
   descripcion: { type: String },
-  completado: { type: Boolean },
-  fechaCreacion: { type: Date }
+  completado: { type: Boolean }
 });
 
 module.exports = mongoose.model('Juego', juegoSchema);

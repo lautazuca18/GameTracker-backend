@@ -1,7 +1,16 @@
 const express = require ('express');
 const mongoose = require('mongoose');
+const cors = require("cors");
 const app = express();
 app.use(express.json());
+app.use(cors());
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 const MONGODB_URI = 'mongodb+srv://jacobogarcesoquendo:aFJzVMGN3o7fA38A@cluster0.mqwbn.mongodb.net/LautaroZuca';
 
@@ -27,16 +36,22 @@ app.get('/juegos', async (req, res) => {
 app.post('/juegos', async (req, res) => {
     const titulo = req.body.titulo;
     const genero = req.body.genero;
-    const horasJugadas = req.body.horasJugadas;
+    const plataforma = req.body.plataforma;
+    const añoLanzamiento = req.body.añoLanzamiento;
+    const desarrollador = req.body.desarrollador;
+    const imagenPortada = req.body.imagenPortada;
+    const descripcion = req.body.descripcion;
     const completado = req.body.completado;
-    const puntuacion = req.body.puntuacion;
 
     const juego = {
         titulo,
         genero,
-        horasJugadas,
-        completado,
-        puntuacion
+        plataforma,
+        añoLanzamiento,
+        desarrollador,
+        imagenPortada,
+        descripcion,
+        completado
     }
 
     const nuevoJuego = new Juego(juego);
@@ -50,16 +65,22 @@ app.put('/juegos/:id', async (req, res) => {
     const id = req.params.id;
     const titulo = req.body.titulo;
     const genero = req.body.genero;
-    const horasJugadas = req.body.horasJugadas;
+    const plataforma = req.body.plataforma;
+    const añoLanzamiento = req.body.añoLanzamiento;
+    const desarrollador = req.body.desarrollador;
+    const imagenPortada = req.body.imagenPortada;
+    const descripcion = req.body.descripcion;
     const completado = req.body.completado;
-    const puntuacion = req.body.puntuacion;
 
     const juego = {
         titulo,
         genero,
-        horasJugadas,
-        completado,
-        puntuacion
+        plataforma,
+        añoLanzamiento,
+        desarrollador,
+        imagenPortada,
+        descripcion,
+        completado
     }
 
     const juegoActualizado = await Juego.findByIdAndUpdate(id, juego, { new: true });
