@@ -37,7 +37,7 @@ app.post('/juegos', async (req, res) => {
     const titulo = req.body.titulo;
     const genero = req.body.genero;
     const plataforma = req.body.plataforma;
-    const añoLanzamiento = req.body.añoLanzamiento;
+    const anioLanzamiento = req.body.anioLanzamiento;
     const desarrollador = req.body.desarrollador;
     const imagenPortada = req.body.imagenPortada;
     const descripcion = req.body.descripcion;
@@ -47,7 +47,7 @@ app.post('/juegos', async (req, res) => {
         titulo,
         genero,
         plataforma,
-        añoLanzamiento,
+        anioLanzamiento,
         desarrollador,
         imagenPortada,
         descripcion,
@@ -66,7 +66,7 @@ app.put('/juegos/:id', async (req, res) => {
     const titulo = req.body.titulo;
     const genero = req.body.genero;
     const plataforma = req.body.plataforma;
-    const añoLanzamiento = req.body.añoLanzamiento;
+    const anioLanzamiento = req.body.anioLanzamiento;
     const desarrollador = req.body.desarrollador;
     const imagenPortada = req.body.imagenPortada;
     const descripcion = req.body.descripcion;
@@ -76,7 +76,7 @@ app.put('/juegos/:id', async (req, res) => {
         titulo,
         genero,
         plataforma,
-        añoLanzamiento,
+        anioLanzamiento,
         desarrollador,
         imagenPortada,
         descripcion,

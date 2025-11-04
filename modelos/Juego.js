@@ -4,7 +4,7 @@ const juegoSchema = new mongoose.Schema({
   titulo: { type: String },
   genero: { type: String },
   plataforma: { type: String },
-  añoLanzamiento: { type: Number },
+  anioLanzamiento: { type: Number },
   desarrollador: { type: String },
   imagenPortada: { type: String },
   descripcion: { type: String },
