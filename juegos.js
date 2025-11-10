@@ -65,7 +65,7 @@ app.delete('/juegos/:id', async (req, res) => {
 });
 
 // ===================================
-// 🔹 CRUD RESENAS (sin ñ en la URL)
+// CRUD RESEÑAS
 // ===================================
 app.get('/resenas', async (req, res) => {
   const resenas = await Reseña.find();
@@ -102,8 +102,36 @@ app.delete('/resenas/:id', async (req, res) => {
 });
 
 // ===================================
-// 🔹 INICIAR SERVIDOR
+// ESTADISTICAS
 // ===================================
+
+app.get('/estadisticas', async (req, res) => {
+  try {
+    const juegos = await Juego.find();
+    const reseñas = await Reseña.find();
+
+    const totalJuegos = juegos.length;
+    const juegosCompletados = juegos.filter(j => j.completado === true).length;
+    const horasJugadas = reseñas.reduce((acc, r) => acc + (r.horasJugadas || 0), 0);
+    const promedioPuntuacion = reseñas.length
+      ? reseñas.reduce((acc, r) => acc + r.puntuacion, 0) / reseñas.length
+      : 0;
+
+    res.json({
+      totalJuegos,
+      juegosCompletados,
+      horasJugadas,
+      promedioPuntuacion: promedioPuntuacion.toFixed(1),
+    });
+  } catch (error) {
+    console.error("Error obteniendo estadísticas:", error);
+  }
+});
+
+// ===================================
+// INICIAR SERVIDOR
+// ===================================
+
 app.listen(3000, () => {
   console.log("🚀 Servidor ejecutándose en http://localhost:3000");
 });
